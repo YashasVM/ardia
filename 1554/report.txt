@@ -1,0 +1,31 @@
+Ardia #1554 verification report
+Source head: 68d4e366d. Base: 6727b99b9.
+Scope: shared demo web shims. No native Linux host or macOS app changes.
+
+Reproduction
+The committed fixture imports the real clock, palette and pointer modules and renders a real React MacView in Chromium on Linux. A real browser click starts the check; the pointer stays still. No pointer events are synthesized.
+
+Against the original source, all four defects reproduce: the healthy animation gets zero frames after another ticker throws; an inherited palette name throws; currentPointer is missing before the first subscriber; and the mounted geometric view gets zero enter callbacks. The valid palette control passes.
+With the fixes, all five checks pass. Ticker errors remain reported, the healthy ticker continues, and the mounted view gets exactly one enter callback.
+
+The four source fixes reuse the approach already proposed in PR #1555. This PR adds committed, repeatable browser coverage and rendered-browser evidence instead of the extracted-code harness described in that PR.
+
+Checks
+pnpm -C packages/demo test: pass.
+pnpm exec turbo run test --filter=@ardia/demo: pass, one task discovered.
+pnpm -C packages/demo typecheck: pass. macOS icon-name verification skips on Linux.
+pnpm -C packages/demo build: pass.
+Workflow YAML parsed. Existing release and site-build jobs install Chromium before running the test. Those modified GitHub jobs have not executed yet.
+
+Independent review
+sol-loop, GPT-6 Sol on high, two rounds. First round requested normal-test/CI wiring. That finding was fixed. The second round approved with no remaining findings.
+
+Shivam's observed PR/review pattern
+PRs #1708, #1693 and #1732 lead with Closes #N, then explain the original failure, fix, concrete tests or VM proof, platform differences, and telemetry or its absence. On #1691 he checked a delayed-focus race, reproduced it, and linked the exact fixing commit in his review response. This PR follows that structure and separates observed browser proof from untested native behavior.
+
+Limits
+This proves the real web shims and rendered MacView, not the full Linux browser host or the macOS app. No telemetry was added for these demo-only paths. The original issue lacks the bug label; adding it failed with HTTP 403 and needs a maintainer. Linux reports #1483 and #1457 were reproduced headlessly but are not fixed by this PR.
+
+Evidence
+before.png and before.mp4 show the failing original sources.
+after.png and after.mp4 show the final fixture passing.
