@@ -1,0 +1,15 @@
+Platform: Linux
+Control discovery: real mode-0600 JSON with a live PID
+Transport: real Unix socket; existing FakeArdia protocol server
+Expected socket: <scratch>/Chromium/ArdiaControl.sock
+Actual socket:   <scratch>/ArdiaControl.sock
+Expected mapping: {"PAGE-11": "tab-11"}
+Actual mapping:   {}
+Expected generation: 7
+Actual generation:   None
+Socket methods received: []
+Traceback (most recent call last):
+  File "/tmp/ardia-1962-socket-proof/reproduce.py", line 38, in <module>
+    assert mapping == {'PAGE-11': 'tab-11'}, 'browse could not map the loaded tab through its discovered socket'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: browse could not map the loaded tab through its discovered socket

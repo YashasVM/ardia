@@ -1,0 +1,38 @@
+test_discovered_endpoint_finds_its_control_socket_on_both_platforms (test_linux.DataDir.test_discovered_endpoint_finds_its_control_socket_on_both_platforms) ... 
+  test_discovered_endpoint_finds_its_control_socket_on_both_platforms (test_linux.DataDir.test_discovered_endpoint_finds_its_control_socket_on_both_platforms) (linux=True, name='data') ... FAIL
+  test_discovered_endpoint_finds_its_control_socket_on_both_platforms (test_linux.DataDir.test_discovered_endpoint_finds_its_control_socket_on_both_platforms) (linux=True, name='Chromium') ... FAIL
+test_discovered_endpoint_maps_loaded_tabs_over_its_socket (test_linux.BrowseSocketDiscovery.test_discovered_endpoint_maps_loaded_tabs_over_its_socket) ... FAIL
+
+======================================================================
+FAIL: test_discovered_endpoint_finds_its_control_socket_on_both_platforms (test_linux.DataDir.test_discovered_endpoint_finds_its_control_socket_on_both_platforms) (linux=True, name='data')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yvm/code/ardia/apps/cli/tests/test_linux.py", line 105, in test_discovered_endpoint_finds_its_control_socket_on_both_platforms
+    self.assertEqual(control_socket(state), data / "ArdiaControl.sock")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: PosixPath('/tmp/ardia-linux-test-9rzem_qa/ArdiaControl.sock') != PosixPath('/tmp/ardia-linux-test-9rzem_qa/data/ArdiaControl.sock')
+
+======================================================================
+FAIL: test_discovered_endpoint_finds_its_control_socket_on_both_platforms (test_linux.DataDir.test_discovered_endpoint_finds_its_control_socket_on_both_platforms) (linux=True, name='Chromium')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yvm/code/ardia/apps/cli/tests/test_linux.py", line 105, in test_discovered_endpoint_finds_its_control_socket_on_both_platforms
+    self.assertEqual(control_socket(state), data / "ArdiaControl.sock")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: PosixPath('/tmp/ardia-linux-test-9rzem_qa/ArdiaControl.sock') != PosixPath('/tmp/ardia-linux-test-9rzem_qa/Chromium/ArdiaControl.sock')
+
+======================================================================
+FAIL: test_discovered_endpoint_maps_loaded_tabs_over_its_socket (test_linux.BrowseSocketDiscovery.test_discovered_endpoint_maps_loaded_tabs_over_its_socket)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yvm/code/ardia/apps/cli/tests/test_linux.py", line 128, in test_discovered_endpoint_maps_loaded_tabs_over_its_socket
+    self.assertEqual(asyncio.run(tabs.app_tab_map(state)), {"PAGE-11": "tab-11"})
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {} != {'PAGE-11': 'tab-11'}
+- {}
++ {'PAGE-11': 'tab-11'}
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.057s
+
+FAILED (failures=3)

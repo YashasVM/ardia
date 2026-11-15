@@ -1,0 +1,141 @@
+.........................................Task exception was never retrieved
+future: <Task finished name='Task-325' coro=<Connection.next_event() done, defined at /home/yvm/code/ardia/apps/cli/ardia_cli/control.py:278> exception=Unreachable('Ardia isn\'t running, or "Let the ardia command control Ardia" is off in Settings. (Ardia closed the connection)')>
+Traceback (most recent call last):
+  File "/home/yvm/code/ardia/apps/cli/ardia_cli/control.py", line 279, in next_event
+    event, _ = await self.next_line(timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yvm/code/ardia/apps/cli/ardia_cli/control.py", line 271, in next_line
+    raise unreachable(self._lost)
+ardia_cli.control.Unreachable: Ardia isn't running, or "Let the ardia command control Ardia" is off in Settings. (Ardia closed the connection)
+...................................................s.................................ssssssssssssssssssssssssssssss..............................................................................................................................................ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss...........................................................................................................................................ssssssssssssssssss.........sss............................................E..............................EE..EE............................................sssssssssssss....s..sssssssssssssss.........................................................................................................................................
+[e2e] Sent. Reference FB-67SH.
+Issue: file:///home/yvm/ardia-scratch/telemetry4wmn78rj/service/feedback/FB-67SH/issue.md
+You appear to us as Mellow Kangaroo.
+..........................................................................s.................................................................................................................................................
+======================================================================
+ERROR: test_null_origin_is_refused (test_browse_review.StreamRefusesNullOrigin.test_null_origin_is_refused)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yvm/code/ardia/apps/cli/tests/test_browse_review.py", line 613, in test_null_origin_is_refused
+    from websockets.asyncio.client import connect
+ModuleNotFoundError: No module named 'websockets'
+
+======================================================================
+ERROR: test_commands_events_frames_and_errors (test_cdp.ConnectionTest.test_commands_events_frames_and_errors)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yvm/code/ardia/apps/cli/tests/test_cdp.py", line 124, in test_commands_events_frames_and_errors
+    echoed, fragmented, large, ponged, events, failed, after_timeout, connection = run(scenario())
+                                                                                   ~~~^^^^^^^^^^^^
+  File "/home/yvm/code/ardia/apps/cli/tests/test_cdp.py", line 65, in run
+    return asyncio.run(asyncio.wait_for(coroutine, 30))
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yvm/.local/share/mise/installs/python/3.14.7/lib/python3.14/asyncio/runners.py", line 205, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/home/yvm/.local/share/mise/installs/python/3.14.7/lib/python3.14/asyncio/runners.py", line 128, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/home/yvm/.local/share/mise/installs/python/3.14.7/lib/python3.14/asyncio/base_events.py", line 720, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/home/yvm/.local/share/mise/installs/python/3.14.7/lib/python3.14/asyncio/tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/yvm/code/ardia/apps/cli/tests/test_cdp.py", line 104, in scenario
+    async with Peer(echo_results) as peer:
+               ~~~~^^^^^^^^^^^^^^
+  File "/home/yvm/code/ardia/apps/cli/tests/test_cdp.py", line 22, in __aenter__
+    from websockets.asyncio.server import serve
+ModuleNotFoundError: No module named 'websockets'
+
+======================================================================
+ERROR: test_forbidden_commands_never_reach_the_wire (test_cdp.ConnectionTest.test_forbidden_commands_never_reach_the_wire)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yvm/code/ardia/apps/cli/tests/test_cdp.py", line 189, in test_forbidden_commands_never_reach_the_wire
+    received = run(scenario())
+  File "/home/yvm/code/ardia/apps/cli/tests/test_cdp.py", line 65, in run
+    return asyncio.run(asyncio.wait_for(coroutine, 30))
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yvm/.local/share/mise/installs/python/3.14.7/lib/python3.14/asyncio/runners.py", line 205, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/home/yvm/.local/share/mise/installs/python/3.14.7/lib/python3.14/asyncio/runners.py", line 128, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/home/yvm/.local/share/mise/installs/python/3.14.7/lib/python3.14/asyncio/base_events.py", line 720, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/home/yvm/.local/share/mise/installs/python/3.14.7/lib/python3.14/asyncio/tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/yvm/code/ardia/apps/cli/tests/test_cdp.py", line 169, in scenario
+    async with Peer(echo_results) as peer:
+               ~~~~^^^^^^^^^^^^^^
+  File "/home/yvm/code/ardia/apps/cli/tests/test_cdp.py", line 22, in __aenter__
+    from websockets.asyncio.server import serve
+ModuleNotFoundError: No module named 'websockets'
+
+======================================================================
+ERROR: test_message_over_max_size_ends_the_connection (test_cdp.ConnectionTest.test_message_over_max_size_ends_the_connection)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yvm/code/ardia/apps/cli/tests/test_cdp.py", line 165, in test_message_over_max_size_ends_the_connection
+    run(scenario())
+    ~~~^^^^^^^^^^^^
+  File "/home/yvm/code/ardia/apps/cli/tests/test_cdp.py", line 65, in run
+    return asyncio.run(asyncio.wait_for(coroutine, 30))
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yvm/.local/share/mise/installs/python/3.14.7/lib/python3.14/asyncio/runners.py", line 205, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/home/yvm/.local/share/mise/installs/python/3.14.7/lib/python3.14/asyncio/runners.py", line 128, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/home/yvm/.local/share/mise/installs/python/3.14.7/lib/python3.14/asyncio/base_events.py", line 720, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/home/yvm/.local/share/mise/installs/python/3.14.7/lib/python3.14/asyncio/tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/yvm/code/ardia/apps/cli/tests/test_cdp.py", line 157, in scenario
+    async with Peer(echo_results) as peer:
+               ~~~~^^^^^^^^^^^^^^
+  File "/home/yvm/code/ardia/apps/cli/tests/test_cdp.py", line 22, in __aenter__
+    from websockets.asyncio.server import serve
+ModuleNotFoundError: No module named 'websockets'
+
+======================================================================
+ERROR: test_peer_closing_fails_pending_commands_and_sets_lost (test_cdp.ConnectionTest.test_peer_closing_fails_pending_commands_and_sets_lost)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yvm/code/ardia/apps/cli/tests/test_cdp.py", line 153, in test_peer_closing_fails_pending_commands_and_sets_lost
+    run(scenario())
+    ~~~^^^^^^^^^^^^
+  File "/home/yvm/code/ardia/apps/cli/tests/test_cdp.py", line 65, in run
+    return asyncio.run(asyncio.wait_for(coroutine, 30))
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yvm/.local/share/mise/installs/python/3.14.7/lib/python3.14/asyncio/runners.py", line 205, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/home/yvm/.local/share/mise/installs/python/3.14.7/lib/python3.14/asyncio/runners.py", line 128, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/home/yvm/.local/share/mise/installs/python/3.14.7/lib/python3.14/asyncio/base_events.py", line 720, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/home/yvm/.local/share/mise/installs/python/3.14.7/lib/python3.14/asyncio/tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/yvm/code/ardia/apps/cli/tests/test_cdp.py", line 137, in scenario
+    async with Peer(echo_results) as peer:
+               ~~~~^^^^^^^^^^^^^^
+  File "/home/yvm/code/ardia/apps/cli/tests/test_cdp.py", line 22, in __aenter__
+    from websockets.asyncio.server import serve
+ModuleNotFoundError: No module named 'websockets'
+
+----------------------------------------------------------------------
+Ran 1070 tests in 52.788s
+
+FAILED (errors=5, skipped=168)

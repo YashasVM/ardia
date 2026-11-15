@@ -1,0 +1,51 @@
+Linux CLI control-socket fix
+
+Issue: https://github.com/ardia-browser/ardia/issues/1982
+Original bundled report: https://github.com/ardia-browser/ardia/issues/1962
+Base: e7e70264e797ca1de870f5ff93d5b946c99a6a5b
+Fixed commit: fd2a4e5b0e89e7879b6e5c8347b0cd5f48b14217
+
+Reproduction and proof
+
+Run from the repository root:
+PYTHONPATH=apps/cli:apps/cli/tests python /path/to/reproduce.py
+
+The reproduction writes a real mode-0600 discovery JSON with a live PID and starts the existing FakeArdia fixture on a real Unix socket. It uses the production endpoint resolver, control socket derivation, Unix peer authentication, protocol handshake, windows RPC and loaded-tab mapping.
+
+Before: browse searches outside the data directory, returns an empty mapping, and sends no requests to the socket server.
+After: browse connects beside the Linux discovery JSON, sends hello/windows, returns PAGE-11 -> tab-11, and retains page generation 7.
+
+proof.png renders the captured before.txt and after.txt command output. It is a test-output image, not a native browser screenshot.
+
+Regression tests
+
+PYTHONPATH=apps/cli:apps/cli/tests python -m unittest test_linux.DataDir.test_discovered_endpoint_finds_its_control_socket_on_both_platforms test_linux.BrowseSocketDiscovery -v
+
+Original source: three failures, covering ordinary Linux roots, a Linux root named Chromium, and loaded-tab mapping. The macOS layout passes.
+Fixed source: both tests pass, including all three platform/layout cases and the real Unix socket mapping exchange.
+
+Nearby checks
+
+PYTHONPATH=apps/cli:apps/cli/tests python -m unittest test_linux test_automation test_browse_borrowed -v
+117 tests pass on Python 3.14.7.
+
+python -m unittest discover -s apps/cli/tests
+1070 tests run, 168 skipped, five errors caused by absent websockets. No assertion failures. Existing asynchronous teardown diagnostics also appear in the log.
+
+Installed requirements.lock with hashes into an isolated scratch venv, then reran the affected test classes:
+PYTHONPATH=apps/cli:apps/cli/tests /tmp/ardia-1962-socket-proof/venv/bin/python -m unittest test_browse_review.StreamRefusesNullOrigin test_cdp.ConnectionTest -v
+All eight tests pass on Python 3.13.16, including the five previously blocked by the missing dependency. The whole suite was not rerun.
+
+git diff --check passes.
+
+Review
+
+OpenAI GPT-6.1 Sol, high effort, reviewed the design before the change and approved the final behavior diff afterward. No findings. The final reviewer independently confirmed the 117 focused passes and original three regression failures.
+
+Scope and limits
+
+Only control.py and test_linux.py change. Linux chooses the discovery JSON's directory; macOS retains its parent directory. Socket ownership checks, peer authentication and the Ardia handshake stay intact.
+
+No native browser was built or launched. The complete viewport command and macOS runtime were not exercised. The macOS path has regression coverage. The telemetry cancellation and any[] findings from #1962 remain outside this PR.
+
+No new telemetry fields. Existing command success/error codes and viewport_set cover downstream command outcomes; no paths, URLs, tokens or caller names are added to telemetry.

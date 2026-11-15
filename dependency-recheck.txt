@@ -1,0 +1,13 @@
+test_null_origin_is_refused (test_browse_review.StreamRefusesNullOrigin.test_null_origin_is_refused) ... ok
+test_a_peer_that_stops_reading_times_commands_out_instead_of_hanging (test_cdp.ConnectionTest.test_a_peer_that_stops_reading_times_commands_out_instead_of_hanging) ... ok
+test_commands_events_frames_and_errors (test_cdp.ConnectionTest.test_commands_events_frames_and_errors) ... ok
+test_forbidden_commands_never_reach_the_wire (test_cdp.ConnectionTest.test_forbidden_commands_never_reach_the_wire) ... ok
+test_handshake_refusal_is_a_clear_error (test_cdp.ConnectionTest.test_handshake_refusal_is_a_clear_error) ... ok
+test_masking_round_trips (test_cdp.ConnectionTest.test_masking_round_trips) ... ok
+test_message_over_max_size_ends_the_connection (test_cdp.ConnectionTest.test_message_over_max_size_ends_the_connection) ... ok
+test_peer_closing_fails_pending_commands_and_sets_lost (test_cdp.ConnectionTest.test_peer_closing_fails_pending_commands_and_sets_lost) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 1.212s
+
+OK

@@ -1,0 +1,11 @@
+Platform: Linux
+Control discovery: real mode-0600 JSON with a live PID
+Transport: real Unix socket; existing FakeArdia protocol server
+Expected socket: <scratch>/Chromium/ArdiaControl.sock
+Actual socket:   <scratch>/Chromium/ArdiaControl.sock
+Expected mapping: {"PAGE-11": "tab-11"}
+Actual mapping:   {"PAGE-11": "tab-11"}
+Expected generation: 7
+Actual generation:   7
+Socket methods received: ["hello", "windows"]
+PASS: discovery -> socket -> handshake -> windows -> loaded-tab mapping
