@@ -1,0 +1,113 @@
+Native Linux Ardia verification for PR #1983
+Head: dbdd6b91fe1c65f532477bba253213467bd2be73
+Engine: a40b3d46338306c2b01426611daedca6cd5e9dc3, Chromium 157.0.8103.50
+UI: built from this checkout with Vite
+Display: private Xvfb, background instance, scratch HOME/profile, sandbox enabled
+
+BEFORE $ ardia browse tab list [exit 0]
+{
+  "success": true,
+  "data": {
+    "tabs": [
+      {
+        "tabId": "t1",
+        "appTabId": null,
+        "label": null,
+        "targetId": "C75691701A6769A96EC086D96445EA9D",
+        "title": "Ardia Linux socket proof",
+        "url": "http://127.0.0.1:39841/",
+        "type": "page",
+        "active": false,
+        "openedBySession": false,
+        "openedBy": null,
+        "usedBy": []
+      },
+      {
+        "tabId": "t2",
+        "appTabId": null,
+        "label": null,
+        "targetId": "DA7E4089884FF35D98F77C8495242CDB",
+        "title": "Ardia Linux socket proof",
+        "url": "http://127.0.0.1:39841/",
+        "type": "page",
+        "active": true,
+        "openedBySession": true,
+        "openedBy": "socket-before",
+        "usedBy": []
+      }
+    ]
+  },
+  "error": null
+}
+
+BEFORE $ ardia browse set viewport 390 844 [exit 1]
+{
+  "success": false,
+  "data": null,
+  "error": "`set viewport` works on a tab this session opened that has never been shown: Ardia takes it off-screen first, so an emulated page is never on screen. Ardia doesn't list this session's tab. Open one with `ardia browse open <url>` (without --show) and set its viewport there",
+  "code": "viewport_needs_hidden_tab"
+}
+
+AFTER $ ardia browse tab list [exit 0]
+{
+  "success": true,
+  "data": {
+    "tabs": [
+      {
+        "tabId": "t1",
+        "appTabId": "main-tab-0",
+        "label": null,
+        "targetId": "C75691701A6769A96EC086D96445EA9D",
+        "title": "Ardia Linux socket proof",
+        "url": "http://127.0.0.1:39841/",
+        "type": "page",
+        "active": false,
+        "openedBySession": false,
+        "openedBy": null,
+        "usedBy": []
+      },
+      {
+        "tabId": "t3",
+        "appTabId": "tab-mwhseqac2syz-3",
+        "label": null,
+        "targetId": "9501253AE5A3B61D54B1A2446B6AB6EF",
+        "title": "Ardia Linux socket proof",
+        "url": "http://127.0.0.1:39841/",
+        "type": "page",
+        "active": true,
+        "openedBySession": true,
+        "openedBy": "socket-after",
+        "usedBy": []
+      }
+    ]
+  },
+  "error": null
+}
+
+AFTER $ ardia browse set viewport 390 844 [exit 0]
+{
+  "success": true,
+  "data": {
+    "width": 390,
+    "height": 844,
+    "deviceScaleFactor": 1,
+    "mobile": false
+  },
+  "error": null
+}
+
+AFTER $ ardia browse eval ({width:innerWidth,height:innerHeight,title:document.title}) [exit 0]
+{
+  "success": true,
+  "data": {
+    "origin": "http://127.0.0.1:39841/",
+    "result": {
+      "width": 390,
+      "height": 844,
+      "title": "Ardia Linux socket proof"
+    }
+  },
+  "error": null
+}
+
+PASS: original CLI has null appTabId and viewport_needs_hidden_tab; fixed CLI maps native tab ids, sets viewport, and the actual offscreen page reports 390 x 844.

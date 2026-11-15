@@ -1,0 +1,7 @@
+Sol-loop rounds: 3 total, GPT-6.1 Sol, high reasoning effort, priority service.
+Round 1: proposed design approved.
+Round 2: final code approved, no findings; independently confirmed 117 focused tests and original three regression failures.
+Round 3: native evidence and final rebased diff approved, no blocker or should-fix findings; independently ran 92 focused tests and verified archive SHA256.
+Evidence correction: use the X11 command record and native screenshot. An earlier headless log phrase overstated a timed-out screenshot; that log is not attached as final proof.
+Behavior diff unchanged: two files, 31 insertions, one deletion.
+Usage not exposed.

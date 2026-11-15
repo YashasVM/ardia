@@ -1,0 +1,13 @@
+{
+  "format": 2,
+  "engine_key": "a40b3d46338306c2b01426611daedca6cd5e9dc3",
+  "source_commit": "2c76d78716446567dedef0786344e0492c3f0b7f",
+  "target_os": "linux",
+  "target_cpu": "x64",
+  "chromium_version": "157.0.8103.50",
+  "args_gn_sha256": "21f8a15d925801ba08e9dfddd0f8ad26d972bba1a69389dc2eeefcc817a251a1",
+  "chrome_sha256": "3928e4244ef3ad503ea0e933704e2ef93553875dd440cf7fcb2de37c2d300571",
+  "chrome_build_id": "e21df5587f82c2b1ba4f21f246a8de11460ae619",
+  "built_at": "2026-11-15T07:39:06Z",
+  "packaged_at": "2026-11-15T07:40:00Z"
+}

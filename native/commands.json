@@ -1,0 +1,328 @@
+[
+  {
+    "stage": "before",
+    "args": [
+      "open",
+      "http://127.0.0.1:39841/"
+    ],
+    "exit": 0,
+    "stdout": "{\"success\":true,\"data\":{\"url\":\"http://127.0.0.1:39841/\",\"title\":\"Ardia Linux socket proof\",\"tabId\":\"t2\",\"background\":true,\"takesInput\":true,\"changes\":{\"document\":\"new\",\"url\":null,\"title\":null,\"added\":[{\"ref\":\"e1\",\"role\":\"heading\",\"name\":\"Ardia Linux socket proof\",\"value\":\"\",\"attrs\":[\"level=1\"]}],\"removed\":[],\"changed\":[],\"network\":[],\"back\":[],\"rerendered\":[],\"text\":{\"lines\":[\"# Ardia Linux socket proof [@e1]\",\"Actual Linux Ardia browser. Local test page.\",\"851 x 1121\",\"CLI verification is running...\",\"The CLI should resize its own offscreen tab to 390 x 844.\"],\"more\":false,\"where\":\"body\"}}},\"error\":null}\n",
+    "stderr": "",
+    "json": {
+      "success": true,
+      "data": {
+        "url": "http://127.0.0.1:39841/",
+        "title": "Ardia Linux socket proof",
+        "tabId": "t2",
+        "background": true,
+        "takesInput": true,
+        "changes": {
+          "document": "new",
+          "url": null,
+          "title": null,
+          "added": [
+            {
+              "ref": "e1",
+              "role": "heading",
+              "name": "Ardia Linux socket proof",
+              "value": "",
+              "attrs": [
+                "level=1"
+              ]
+            }
+          ],
+          "removed": [],
+          "changed": [],
+          "network": [],
+          "back": [],
+          "rerendered": [],
+          "text": {
+            "lines": [
+              "# Ardia Linux socket proof [@e1]",
+              "Actual Linux Ardia browser. Local test page.",
+              "851 x 1121",
+              "CLI verification is running...",
+              "The CLI should resize its own offscreen tab to 390 x 844."
+            ],
+            "more": false,
+            "where": "body"
+          }
+        }
+      },
+      "error": null
+    }
+  },
+  {
+    "stage": "before",
+    "args": [
+      "tab",
+      "list"
+    ],
+    "exit": 0,
+    "stdout": "{\"success\":true,\"data\":{\"tabs\":[{\"tabId\":\"t1\",\"appTabId\":null,\"label\":null,\"targetId\":\"C75691701A6769A96EC086D96445EA9D\",\"title\":\"Ardia Linux socket proof\",\"url\":\"http://127.0.0.1:39841/\",\"type\":\"page\",\"active\":false,\"openedBySession\":false,\"openedBy\":null,\"usedBy\":[]},{\"tabId\":\"t2\",\"appTabId\":null,\"label\":null,\"targetId\":\"DA7E4089884FF35D98F77C8495242CDB\",\"title\":\"Ardia Linux socket proof\",\"url\":\"http://127.0.0.1:39841/\",\"type\":\"page\",\"active\":true,\"openedBySession\":true,\"openedBy\":\"socket-before\",\"usedBy\":[]}]},\"error\":null}\n",
+    "stderr": "",
+    "json": {
+      "success": true,
+      "data": {
+        "tabs": [
+          {
+            "tabId": "t1",
+            "appTabId": null,
+            "label": null,
+            "targetId": "C75691701A6769A96EC086D96445EA9D",
+            "title": "Ardia Linux socket proof",
+            "url": "http://127.0.0.1:39841/",
+            "type": "page",
+            "active": false,
+            "openedBySession": false,
+            "openedBy": null,
+            "usedBy": []
+          },
+          {
+            "tabId": "t2",
+            "appTabId": null,
+            "label": null,
+            "targetId": "DA7E4089884FF35D98F77C8495242CDB",
+            "title": "Ardia Linux socket proof",
+            "url": "http://127.0.0.1:39841/",
+            "type": "page",
+            "active": true,
+            "openedBySession": true,
+            "openedBy": "socket-before",
+            "usedBy": []
+          }
+        ]
+      },
+      "error": null
+    }
+  },
+  {
+    "stage": "before",
+    "args": [
+      "set",
+      "viewport",
+      "390",
+      "844"
+    ],
+    "exit": 1,
+    "stdout": "{\"success\":false,\"data\":null,\"error\":\"`set viewport` works on a tab this session opened that has never been shown: Ardia takes it off-screen first, so an emulated page is never on screen. Ardia doesn't list this session's tab. Open one with `ardia browse open <url>` (without --show) and set its viewport there\",\"code\":\"viewport_needs_hidden_tab\"}\n",
+    "stderr": "",
+    "json": {
+      "success": false,
+      "data": null,
+      "error": "`set viewport` works on a tab this session opened that has never been shown: Ardia takes it off-screen first, so an emulated page is never on screen. Ardia doesn't list this session's tab. Open one with `ardia browse open <url>` (without --show) and set its viewport there",
+      "code": "viewport_needs_hidden_tab"
+    }
+  },
+  {
+    "stage": "before",
+    "args": [
+      "close"
+    ],
+    "exit": 0,
+    "stdout": "{\"success\":true,\"data\":{\"closed\":true,\"tabs\":1,\"keptOpen\":[]},\"error\":null}\n",
+    "stderr": "",
+    "json": {
+      "success": true,
+      "data": {
+        "closed": true,
+        "tabs": 1,
+        "keptOpen": []
+      },
+      "error": null
+    }
+  },
+  {
+    "stage": "after",
+    "args": [
+      "open",
+      "http://127.0.0.1:39841/"
+    ],
+    "exit": 0,
+    "stdout": "{\"success\":true,\"data\":{\"url\":\"http://127.0.0.1:39841/\",\"title\":\"Ardia Linux socket proof\",\"tabId\":\"t3\",\"background\":true,\"takesInput\":true,\"changes\":{\"document\":\"new\",\"url\":null,\"title\":null,\"added\":[{\"ref\":\"e1\",\"role\":\"heading\",\"name\":\"Ardia Linux socket proof\",\"value\":\"\",\"attrs\":[\"level=1\"]}],\"removed\":[],\"changed\":[],\"network\":[],\"back\":[],\"rerendered\":[],\"text\":{\"lines\":[\"# Ardia Linux socket proof [@e1]\",\"Actual Linux Ardia browser. Local test page.\",\"851 x 1121\",\"CLI verification is running...\",\"The CLI should resize its own offscreen tab to 390 x 844.\"],\"more\":false,\"where\":\"body\"}}},\"error\":null}\n",
+    "stderr": "",
+    "json": {
+      "success": true,
+      "data": {
+        "url": "http://127.0.0.1:39841/",
+        "title": "Ardia Linux socket proof",
+        "tabId": "t3",
+        "background": true,
+        "takesInput": true,
+        "changes": {
+          "document": "new",
+          "url": null,
+          "title": null,
+          "added": [
+            {
+              "ref": "e1",
+              "role": "heading",
+              "name": "Ardia Linux socket proof",
+              "value": "",
+              "attrs": [
+                "level=1"
+              ]
+            }
+          ],
+          "removed": [],
+          "changed": [],
+          "network": [],
+          "back": [],
+          "rerendered": [],
+          "text": {
+            "lines": [
+              "# Ardia Linux socket proof [@e1]",
+              "Actual Linux Ardia browser. Local test page.",
+              "851 x 1121",
+              "CLI verification is running...",
+              "The CLI should resize its own offscreen tab to 390 x 844."
+            ],
+            "more": false,
+            "where": "body"
+          }
+        }
+      },
+      "error": null
+    }
+  },
+  {
+    "stage": "after",
+    "args": [
+      "tab",
+      "list"
+    ],
+    "exit": 0,
+    "stdout": "{\"success\":true,\"data\":{\"tabs\":[{\"tabId\":\"t1\",\"appTabId\":\"main-tab-0\",\"label\":null,\"targetId\":\"C75691701A6769A96EC086D96445EA9D\",\"title\":\"Ardia Linux socket proof\",\"url\":\"http://127.0.0.1:39841/\",\"type\":\"page\",\"active\":false,\"openedBySession\":false,\"openedBy\":null,\"usedBy\":[]},{\"tabId\":\"t3\",\"appTabId\":\"tab-mwhseqac2syz-3\",\"label\":null,\"targetId\":\"9501253AE5A3B61D54B1A2446B6AB6EF\",\"title\":\"Ardia Linux socket proof\",\"url\":\"http://127.0.0.1:39841/\",\"type\":\"page\",\"active\":true,\"openedBySession\":true,\"openedBy\":\"socket-after\",\"usedBy\":[]}]},\"error\":null}\n",
+    "stderr": "",
+    "json": {
+      "success": true,
+      "data": {
+        "tabs": [
+          {
+            "tabId": "t1",
+            "appTabId": "main-tab-0",
+            "label": null,
+            "targetId": "C75691701A6769A96EC086D96445EA9D",
+            "title": "Ardia Linux socket proof",
+            "url": "http://127.0.0.1:39841/",
+            "type": "page",
+            "active": false,
+            "openedBySession": false,
+            "openedBy": null,
+            "usedBy": []
+          },
+          {
+            "tabId": "t3",
+            "appTabId": "tab-mwhseqac2syz-3",
+            "label": null,
+            "targetId": "9501253AE5A3B61D54B1A2446B6AB6EF",
+            "title": "Ardia Linux socket proof",
+            "url": "http://127.0.0.1:39841/",
+            "type": "page",
+            "active": true,
+            "openedBySession": true,
+            "openedBy": "socket-after",
+            "usedBy": []
+          }
+        ]
+      },
+      "error": null
+    }
+  },
+  {
+    "stage": "after",
+    "args": [
+      "set",
+      "viewport",
+      "390",
+      "844"
+    ],
+    "exit": 0,
+    "stdout": "{\"success\":true,\"data\":{\"width\":390,\"height\":844,\"deviceScaleFactor\":1.0,\"mobile\":false},\"error\":null}\n",
+    "stderr": "",
+    "json": {
+      "success": true,
+      "data": {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 1,
+        "mobile": false
+      },
+      "error": null
+    }
+  },
+  {
+    "stage": "after",
+    "args": [
+      "eval",
+      "({width:innerWidth,height:innerHeight,title:document.title})"
+    ],
+    "exit": 0,
+    "stdout": "{\"success\":true,\"data\":{\"origin\":\"http://127.0.0.1:39841/\",\"result\":{\"width\":390,\"height\":844,\"title\":\"Ardia Linux socket proof\"}},\"error\":null}\n",
+    "stderr": "",
+    "json": {
+      "success": true,
+      "data": {
+        "origin": "http://127.0.0.1:39841/",
+        "result": {
+          "width": 390,
+          "height": 844,
+          "title": "Ardia Linux socket proof"
+        }
+      },
+      "error": null
+    }
+  },
+  {
+    "stage": "after",
+    "args": [
+      "close"
+    ],
+    "exit": 0,
+    "stdout": "{\"success\":true,\"data\":{\"closed\":true,\"tabs\":1,\"keptOpen\":[]},\"error\":null}\n",
+    "stderr": "",
+    "json": {
+      "success": true,
+      "data": {
+        "closed": true,
+        "tabs": 1,
+        "keptOpen": []
+      },
+      "error": null
+    }
+  },
+  {
+    "stage": "before",
+    "args": [
+      "close",
+      "--all"
+    ],
+    "exit": 0,
+    "stdout": "{\"success\":true,\"data\":{\"closed\":[]},\"error\":null}\n",
+    "stderr": "",
+    "json": {
+      "success": true,
+      "data": {
+        "closed": []
+      },
+      "error": null
+    }
+  },
+  {
+    "stage": "after",
+    "args": [
+      "close",
+      "--all"
+    ],
+    "exit": 0,
+    "stdout": "{\"success\":true,\"data\":{\"closed\":[]},\"error\":null}\n",
+    "stderr": "",
+    "json": {
+      "success": true,
+      "data": {
+        "closed": []
+      },
+      "error": null
+    }
+  }
+]

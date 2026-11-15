@@ -1,0 +1,23 @@
+Native Linux browser proof, PR #1983
+
+The original and fixed CLI were run against the SAME real Linux Ardia browser, local fixture server, and throwaway profile. The original source differs only in control.py, restored from base 1f6f0bb01. The fixed source is this PR's CLI.
+
+Before: browse open succeeds; tab list returns null appTabId; set viewport 390 844 exits 1 with viewport_needs_hidden_tab.
+After: browse open succeeds; tab list maps appTabId to a real native tab; set viewport 390 844 exits 0; evaluation in that offscreen page returns exactly {width:390,height:844,title:"Ardia Linux socket proof"}.
+
+The driver asserts these results. The fixture server and every browser/session process it started are closed afterward. No user profiles or desktop workspaces were changed.
+
+native-browser-proof.png is an unedited screenshot of the native app captured by ffmpeg from a private 1280x1200 Xvfb display. The VISIBLE seed tab displays the checked CLI readback from the separate OFFSCREEN tab. Its own viewport is 851x1121. This is not a claim that the offscreen tab itself is displayed at 390x844. native-commands.json contains the actual unmodified CLI responses. native-output.txt formats the relevant responses for reading.
+
+The matched engine is a40b3d46338306c2b01426611daedca6cd5e9dc3, Chromium157.0.8103.50, from the project's published prebuilt engine. Archive SHA256 df5482f725b294b4c0ee4c6f49affac1d8b400020523075ba2af7950665183b4 was checked against the repository's prebuilt engine table. engine-manifest.json records the build. The current UI builds successfully with Vite7.3.7.
+
+The system-installed engine856238 is older and lacks cliTabTargets. On that build the socket is reachable, but viewport mapping cannot work even with this fix. Its initial attempt is not presented as passing proof.
+
+A headless native run also reproduced the before/after mapping and viewport readback. Capturing the offscreen tab itself timed out through both the CLI and the pipe. No screenshot fix is included. The attached native screenshot therefore uses the visible seed tab on Xvfb, with explicitly labelled results from the offscreen tab.
+
+Re-run from the repository root using run.mjs and pipe.mjs in the same directory:
+PROOF_ROOT=/tmp/ardia-1962-new-run PROOF_REPO="$PWD" PROOF_PYTHON=/path/to/python-with-requirements.lock PROOF_EXECUTABLE=/path/to/matched/chrome PROOF_UI="$PWD/apps/linux/dist" PROOF_OZONE=x11 xvfb-run -a -s '-screen 0 1280x1200x24' node /path/to/run.mjs
+
+The script imports project test helpers, copies the CLI into scratch for the before case, starts a local HTML fixture, launches Ardia with the existing background isolation environment and DevTools pipe, drives the real CLI, records JSON, captures the native display, and cleans up. No remote-debugging TCP port is used, so the actual token server remains enabled.
+
+Greptile rated the PR's ded4d8df0 head 5/5 with no findings. CI passed on that head except bug-fix-only, which requires a maintainer to label issue1982 bug. Rebased onto fc42e4d4d only after verifying the upstream commit did not change any CLI files. The CLI behavior diff remains two files, 31 insertions and one deletion.
