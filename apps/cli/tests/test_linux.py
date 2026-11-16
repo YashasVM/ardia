@@ -130,6 +130,22 @@ class BrowseSocketDiscovery(Base):
         self.assertEqual(state.app_generations, {"PAGE-11": 7})
         self.assertEqual([method for method, _ in server.requests], ["hello", "windows"])
 
+    def test_discovered_endpoint_announces_browse_and_script_callers(self):
+        from ardia_cli import caller, scripts_test
+        from ardia_cli.browse.state import State
+
+        write_control(self.data)
+        server = self.serve()
+        found = endpoint.resolve(data_dir=str(self.data))
+        terminal = caller.Caller("Terminal")
+        state = SimpleNamespace(caller=terminal, announced=None)
+        asyncio.run(State.announce_caller(state, found))
+        with mock.patch.object(caller, "current", return_value=terminal):
+            asyncio.run(scripts_test.announce_caller(found))
+        self.assertEqual([method for method, _ in server.requests], ["hello", "caller", "hello", "caller"])
+        self.assertEqual([params for method, params in server.requests if method == "hello"], [{"caller": {"name": "Terminal"}}] * 2)
+        self.assertEqual(state.announced, terminal)
+
 
 class LinuxConfig(Sandbox):
     def setUp(self):
