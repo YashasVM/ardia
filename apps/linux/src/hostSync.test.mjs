@@ -233,6 +233,14 @@ test("one renderer runs sync, the others mirror it and forward their actions, an
   assert.deepEqual(engines, ["a", "b"]);
   assert.equal(await settings.authority.call("syncNow", []), null);
   assert.deepEqual(b.log, ["syncNow"]);
+  await settings.authority.call("setOpenTabsSynced", ["work", true]);
+  await settings.authority.call("setOpenTabsSynced", ["work", false]);
+  assert.deepEqual(b.calls, [
+    { method: "syncNow", args: [] },
+    { method: "setOpenTabsSynced", args: ["work", true] },
+    { method: "setOpenTabsSynced", args: ["work", false] },
+  ]);
+  assert.equal(a.calls.length, 3);
   b.authority.stop();
   await tick(60);
   await assert.rejects(settings.authority.call("syncNow", []), { message: NO_AUTHORITY_MESSAGE });
