@@ -13,6 +13,7 @@ import { removeTabs } from "../tabs/tabs";
 import { isSmallWindow } from "./small";
 import type { PagerPage } from "./profilePager";
 import { isWebPageUrl } from "../../lib/url";
+import { PLATFORM_FEATURES } from "../../lib/platformFeatures";
 import { notePageOverlay } from "../telemetry/usage";
 
 export const useSplitOf = (tabId: string | undefined) => useBrowser((s) => splitOf(s, tabId));
@@ -151,6 +152,10 @@ export function newTabLingeringOver(windowId: string, from: string | undefined, 
   if (isSmallWindow(s.windows[windowId]) || splitOf(s, from) || splitOf(s, to)) return undefined;
   if (!holdsForFirstFrame(tabEngine(s, to))) {
     notePageOverlay("newTabLeftForWebKit");
+    return undefined;
+  }
+  if (!PLATFORM_FEATURES.newTabWaitsForFirstFrame) {
+    notePageOverlay("newTabLeftWithoutLinger");
     return undefined;
   }
   notePageOverlay("newTabLingered");
